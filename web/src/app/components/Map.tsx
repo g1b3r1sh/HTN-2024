@@ -1,4 +1,5 @@
-import { MapView, useMapData } from "@mappedin/react-sdk";
+import { MapView, useMap, useMapData, Label } from "@mappedin/react-sdk";
+import MapInternals from "./MapInternals";
 
 export default function Map() {
 	const { isLoading, error, mapData } = useMapData({
@@ -15,5 +16,14 @@ export default function Map() {
 		return <div>{error.message}</div>
 	}
 
-	return mapData ? <MapView mapData={mapData} style={{width: "1000px", height: "500px"}}></MapView> : null
+	if (!mapData) {
+		return null;
+	}
+
+	const mapView = (<MapView mapData={mapData} style={{width: "1000px", height: "500px"}}>
+		<MapInternals />	
+	</MapView>);
+	
+
+	return mapView;
 }

@@ -1,22 +1,18 @@
 "use client";
 
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
 import dynamic from "next/dynamic";
+import "@mappedin/react-sdk/lib/esm/index.css";
+import Map from "./components/Map";
 
-const Map = dynamic(() => import("@/app/components/Map"), {
-  loading: () => <div />,
-  ssr: false
-});
+// const Map = dynamic(() => import("@/app/components/Map"), {
+//   loading: () => <div />,
+//   ssr: false
+// });
 
 export default function Home() {
-  const ideas = useQuery(api.tasks.getIdeas);
   return (
     <main className="flex min-h-screen min-w-screen flex-col items-center justify-center bg-gradient-defang">
-      <h1 className="text-4xl font-bold text-white">Next.js &times; Defang &times; Convex test</h1>
-      <ul>
-        {ideas?.map(({_id, idea}) => <li key={_id}>{idea}</li>)}
-      </ul>
+      <h1 className="text-4xl font-bold text-white">Title</h1>
       <Map />
     </main>
   );
