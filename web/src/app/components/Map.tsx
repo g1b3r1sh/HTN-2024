@@ -1,7 +1,12 @@
 import { MapView, useMap, useMapData, Label } from "@mappedin/react-sdk";
 import MapInternals from "./MapInternals";
+import { Coord, Point } from "./PointContainer";
 
-export default function Map() {
+export default function Map({points, onClick, onClickLabel}: {
+	points: Point[],
+	onClick: (coord: Coord) => void,
+	onClickLabel: (id: string) => void
+}) {
 	const { isLoading, error, mapData } = useMapData({
 		key: "mik_Qar1NBX1qFjtljLDI52a60753",
 		secret: "mis_CXFS9WnkQkzQmy9GCt4ucn2D68zNRgVa2aiJj5hEIFM8aa40fee",
@@ -21,7 +26,7 @@ export default function Map() {
 	}
 
 	const mapView = (<MapView mapData={mapData} style={{width: "1000px", height: "500px"}}>
-		<MapInternals />	
+		<MapInternals points={points} onClick={onClick} onClickLabel={onClickLabel}/>	
 	</MapView>);
 	
 
